@@ -7,3 +7,19 @@ export const getCountriesData = createAsyncThunk('countries/getCountriesData', a
     console.log(countries)
     return countries;
 })
+
+
+const countriesSlice = createSlice({
+  name: 'countries',
+  initialState: [],
+  reducers: {},
+
+  extraReducers: {
+    [getCountriesData.pending]: (state, action) => {
+      console.log('fetching');
+    },
+    [getCountriesData.fulfilled]: (state, action) => action.payload,
+  },
+});
+
+export default countriesSlice.reducer;
